@@ -1,11 +1,11 @@
 variable "resource_group_name" {
-  type        = "string"
+  type = "string"
 }
 
 variable "location" {
-  type        = "string"
+  type = "string"
 }
 
 variable "app_name" {
-  type        = "string"
+  type = "string"
 }

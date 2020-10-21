@@ -10,7 +10,7 @@ provider "azurerm" {
 locals {
   location = "japaneast"
 
-  resource_group_name = "test01"
+  resource_group_name = "maedatest01"
 }
 
 resource "azurerm_resource_group" "rsg" {
@@ -18,9 +18,16 @@ resource "azurerm_resource_group" "rsg" {
   location = local.location
 }
 
-module "test_mysql" {
+module "webapp" {
   source              = "../../modules/appService001"
   app_name            = "maedatest"
+  location            = local.location
+  resource_group_name = azurerm_resource_group.rsg.name
+}
+
+module "sqldb" {
+  source              = "../../modules/sql001"
+  sql_name            = "maedatest"
   location            = local.location
   resource_group_name = azurerm_resource_group.rsg.name
 }
